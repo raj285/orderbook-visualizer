@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Navbar />
 <div className="flex h-screen">
-  <Sidebar className="w-64 shrink-0" />
+  <Sidebar />
   <main className="flex-1 overflow-auto">{children}</main>
 </div>
         <Footer />
@@ -39,3 +39,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+
+
+
+
