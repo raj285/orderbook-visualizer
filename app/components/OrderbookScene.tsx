@@ -3,14 +3,21 @@
 
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls} from '@react-three/drei'
+import {Suspense} from 'react'
 
 export default function OrderbookScene() {
   return (
-    <Canvas camera={{ position: [0, 10, 40], fov: 50 }}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <OrbitControls />
-      {/* 3D Orderbook bars will go here */}
-    </Canvas>
+     <div className="w-full h-[600px] bg-black">
+      <Canvas camera={{ position: [0, 20, 40], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        {/* console.log('LIVE bids:', bids.slice(0,5), 'asks:', asks.slice(0,5)) */}
+
+        <Suspense fallback={null}>
+          <OrbitControls />
+          {/* 3D Bars will go here */}
+        </Suspense>
+      </Canvas>
+    </div>
   )
 }
