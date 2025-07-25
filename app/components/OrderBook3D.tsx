@@ -5,7 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, GridHelper, AxesHelper, Text } from '@react-three/drei';
 import useBinanceWebSocketClient from './useBinanceWebSocketClient';
 import Bars from './Bars';
-
+import PressureZones from './PressureZones.tsx'; // Adjust path
 function Scene() {
   const { bids, asks } = useBinanceWebSocketClient();
 
@@ -31,7 +31,7 @@ function Scene() {
 
       {/* Bids and Asks Bars */}
       <Bars bids={bids} asks={asks} />
-
+      <PressureZones bids={bids} asks={asks} />
       <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
     </>
   );
