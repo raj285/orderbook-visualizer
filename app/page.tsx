@@ -1,13 +1,12 @@
-'use client'
-import dynamic from 'next/dynamic'
-const OrderBookScene = dynamic(() => import('./components/OrderbookScene'), {
-  ssr: false, // Disable server-side rendering for this component
-})
-export default function Home() {
+import OrderBook3D from './components/OrderBook3D';
+
+export default function HomePage() {
   return (
-    <div className="container mx-auto p-4">
-    <OrderBookScene/>
-    </div>
+    <main className="p-4">
+      <h1 className="text-xl font-bold mb-4">Order Book 3D Visualizer</h1>
+      <OrderBook3D />
+    </main>
   );
 }
+
  
