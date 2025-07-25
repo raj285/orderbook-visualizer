@@ -26,14 +26,14 @@ const [asks, setAsks] = useState<Order[]>([]);
           quantity: parseFloat(q),
         })))
     })
-        const ws = new WebSocket(`wss://fstream.binance.com/ws/${symbol}@depth${level}@100ms`);
+        const ws = new WebSocket('wss://fstream.binance.com/ws/btcusdt@depth20@100ms');
         wsRef.current = ws
         ws.onopen = () => {
             console.log("WebSocket connection established"); 
         };
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            // console.log("Received data:", data);
+            console.log("Received data:", data);
           if (data.u <= lastUpdateId.current) return
           // Optionally validate sequence continuity using d.U, d.u, d.pu...            
             const bidsData = data.b.map((Temp)=>{
@@ -56,13 +56,13 @@ const [asks, setAsks] = useState<Order[]>([]);
         ws.onclose = () => {
             console.log("WebSocket connection closed");
         };
-        ws.onerror = (error) => {
-            console.error("WebSocket error:", error);
-        };
+ws.onerror = (event: Event) => {
+  console.error("WebSocket error occurred", event);
+};
         return () => {
       isSubscribed = false
       if (wsRef.current) wsRef.current.close()
-        };
+        }; 
     }, [symbol, level]);
   return (
     {bids, asks}

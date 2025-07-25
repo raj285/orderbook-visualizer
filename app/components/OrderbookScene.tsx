@@ -4,20 +4,19 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls} from '@react-three/drei'
 import {Suspense} from 'react'
+import useBinanceWebSocketClient from './useBinanceWebSocketClient'
+ import Bars from './Bars'
 
+ 
 export default function OrderbookScene() {
+    const { bids, asks } = useBinanceWebSocketClient('btcusdt', 20)
   return (
-     <div className="w-full h-[600px] bg-black">
-      <Canvas camera={{ position: [0, 20, 40], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        {/* console.log('LIVE bids:', bids.slice(0,5), 'asks:', asks.slice(0,5)) */}
-
-        <Suspense fallback={null}>
-          <OrbitControls />
-          {/* 3D Bars will go here */}
-        </Suspense>
-      </Canvas>
-    </div>
+    <Canvas camera={{ position: [0, 50, 100], fov: 75 }}>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Bars bids={bids} asks={asks} />
+      <OrbitControls />
+    </Canvas>
+    
   )
 }
